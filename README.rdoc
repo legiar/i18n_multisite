@@ -3,8 +3,8 @@
     I18n.namespace = :administrator
 
     # with a namespace set, these are the lookup keys
-    # administrator.index.content
-    # index.content
+    # administrator.home.index.content
+    # home.index.content
     t('home.index.content')
 
     # your namespace can an array too
