@@ -15,10 +15,10 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "i18n_namespace"
-  gem.homepage = "http://github.com/zirni/i18n_namespace"
+  gem.homepage = "http://github.com/avarteqgmbh/i18n_namespace"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{I18n key injection}
+  gem.description = %Q{I18n key injection with fallback functionality}
   gem.email = "matthias.zirnstein@googlemail.com"
   gem.authors = ["Matthias Zirnstein"]
   # dependencies defined in Gemfile
