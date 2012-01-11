@@ -1,19 +1,15 @@
 = i18n_namespace
 
-Description goes here.
+    I18n.namespace = :administrator
 
-== Contributing to i18n_namespace
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+    # with a namespace set, these are the lookup keys
+    # administrator.index.content
+    # index.content
+    t('home.index.content')
 
-== Copyright
+    # your namespace can an array too
+    I18n.namespace = [:administrator, :special_club]
 
-Copyright (c) 2012 Matthias Zirnstein. See LICENSE.txt for
-further details.
-
+    # administrator.special_club.home.index.content
+    # administrator.home.index.content
+    # home.index.content
