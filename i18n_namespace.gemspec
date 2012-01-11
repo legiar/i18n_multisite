@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Matthias Zirnstein"]
   s.date = "2012-01-11"
-  s.description = "I18n key injection with fallback functionality"
+  s.description = "TODO: longer description of your gem"
   s.email = "matthias.zirnstein@googlemail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -35,11 +35,11 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/test_i18n_namespace.rb"
   ]
-  s.homepage = "http://github.com/avarteqgmbh/i18n_namespace"
+  s.homepage = "http://github.com/zirni/i18n_namespace"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.10"
-  s.summary = "I18n key injection"
+  s.summary = "TODO: one-line summary of your gem"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
