@@ -7,7 +7,7 @@
     # home.index.content
     t('home.index.content')
 
-    # your namespace can an array too
+    # your namespace can be an array too
     I18n.namespace = [:administrator, :special_club]
 
     # administrator.special_club.home.index.content
