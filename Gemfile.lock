@@ -29,7 +29,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_support
-  bundler (~> 1.0.0)
+  bundler (>= 1.0.0)
   i18n
   jeweler (~> 1.6.4)
   rcov
