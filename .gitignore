@@ -1,5 +1,7 @@
 .gitignore
 .rbenv-version
+
+Gemfile.lock
 # rcov generated
 coverage
 
