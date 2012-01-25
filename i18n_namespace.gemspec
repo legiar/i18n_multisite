@@ -47,7 +47,7 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<i18n>, [">= 0"])
       s.add_runtime_dependency(%q<yajl-ruby>, [">= 0"])
-      s.add_runtime_dependency(%q<active_support>, [">= 0"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
@@ -56,7 +56,7 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<i18n>, [">= 0"])
       s.add_dependency(%q<yajl-ruby>, [">= 0"])
-      s.add_dependency(%q<active_support>, [">= 0"])
+      s.add_dependency(%q<activesupport>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
@@ -66,7 +66,7 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<i18n>, [">= 0"])
     s.add_dependency(%q<yajl-ruby>, [">= 0"])
-    s.add_dependency(%q<active_support>, [">= 0"])
+    s.add_dependency(%q<activesupport>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, [">= 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
