@@ -1,3 +1,4 @@
+.gitignore
 .rbenv-version
 # rcov generated
 coverage
