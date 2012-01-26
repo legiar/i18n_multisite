@@ -1,4 +1,3 @@
-.gitignore
 .rbenv-version
 
 Gemfile.lock
