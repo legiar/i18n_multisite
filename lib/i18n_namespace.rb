@@ -1,4 +1,5 @@
 require 'i18n'
+require 'i18n_namespace/version'
 require 'i18n_namespace/config'
 require 'i18n_namespace/helper'
 require 'i18n_namespace/storing'
