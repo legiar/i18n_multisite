@@ -1,15 +1,22 @@
-= i18n_namespace
+= i18n_multisite
 
-    I18n.namespace = :administrator
+Support namespaces in *I18n* *Simple* backend
 
-    # with a namespace set, these are the lookup keys
-    # administrator.home.index.content
-    # home.index.content
+With a namespace set, these are the lookup keys
+
+    I18n.namespace = :site1
+
+will be search these keys:
+* site1.home.index.content
+* home.index.content
+
     t('home.index.content')
 
-    # your namespace can be an array too
-    I18n.namespace = [:administrator, :special_club]
+Your namespace can be an array too
 
-    # administrator.special_club.home.index.content
-    # administrator.home.index.content
-    # home.index.content
+    I18n.namespace = [:main_site, :child_site]
+
+will be search these keys:
+* main_site.child_site.home.index.content
+* main_site.home.index.content
+* home.index.content

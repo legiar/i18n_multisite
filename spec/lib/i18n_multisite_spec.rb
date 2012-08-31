@@ -1,19 +1,40 @@
 require "spec_helper"
 require "i18n"
-require "i18n_namespace"
-require "active_support/core_ext/hash"
+require "i18n_multisite"
 
 describe I18n do
 
   before :all do
-    I18n::Backend::Simple.send :include, ::I18nNamespace::Storing
-    I18n::Backend::Simple.send :include, ::I18nNamespace::Fallbacks
     I18n.backend = I18n::Backend::Simple.new()
   end
 
   before :each do
     I18n.namespace = nil
     I18n.reload!
+  end
+
+  def t(key, options = {})
+    I18n.t key, options
+  end
+
+  def s(data, options = {})
+    I18n.backend.store_translations I18n.locale, data, options
+  end
+
+  def sr(key, value)
+    I18n.store_resolved_translation I18n.locale, key, value
+  end
+
+  def store_translations(*args)
+    case args.count
+    when 1
+      raise "Your argument isn't a Hash" unless args.first.is_a? Hash
+      data = args.shift
+    when 2
+      data = { args.shift => args.shift }
+    end
+
+    I18n.backend.store_translations I18n.locale, data
   end
 
   describe "config" do
@@ -66,58 +87,9 @@ describe I18n do
 
   end
 
-  describe "storing" do
-
-    def t(key, options = {})
-      options.reverse_merge!(:namespaced => false)
-      I18n.t key, options
-    end
-
-    def s(data, options = {})
-      options.reverse_merge!(:escape => false, :namespaced => true)
-      I18n.backend.store_translations I18n.locale, data, options
-    end
-
-    def sr(key, value)
-      I18n.store_resolved_translation I18n.locale, key, value, :escape => false, :namespaced => true
-    end
-
-    it "should resolve dot separated key to hash" do
-      sr("foo.bar.title", "FooBar")
-      t("foo.bar.title").should eq "FooBar"
-    end
-
-    it "should save with namespace" do
-      I18n.namespace = :salesman
-
-      s(:title => "Willkommen")
-      t("salesman.title").should eq "Willkommen"
-
-      I18n.namespace = [:salesman, :club]
-
-      s(:title => "Willkommen")
-      t("salesman.club.title").should eq 'Willkommen'
-    end
-
-    it "should not save with namespace" do
-      options = { :namespaced => false }
-
-      I18n.namespace = :salesman
-
-      s({:title => "Willkommen"}, options)
-      t("salesman.title").should include("translation missing")
-
-      I18n.namespace = [:salesman, :club]
-
-      s({:title => "Willkommen"}, options)
-      t("salesman.club.title").should include("translation missing")
-    end
-
-  end
-
   describe "namespace fallbacks" do
 
-    before(:each) do
+    before :each do
       @salesman_title = "Willkommen Salesman"
       @club_title     = "Willkommen im Club"
       @title          = "Willkommen"
@@ -131,23 +103,6 @@ describe I18n do
           }
         }
       })
-    end
-
-    def store_translations(*args)
-      case args.count
-      when 1
-        raise "Your argument isn't a Hash" unless args.first.is_a? Hash
-        data = args.shift
-      when 2
-        data = { args.shift => args.shift }
-      end
-
-      I18n.backend.store_translations I18n.locale, data
-    end
-
-    def t(key, options = {})
-      options.reverse_merge!(:namespaced => true)
-      I18n.t key, options
     end
 
     describe "with no namespace" do
@@ -195,7 +150,7 @@ describe I18n do
       @site_message = "Message for site"
 
 
-      I18n.backend.store_translations(I18n.locale, {
+      store_translations({
         :activerecord => {
           :errors => {
             :messages => {
@@ -216,18 +171,17 @@ describe I18n do
     end
 
     it "should get base message" do
-      I18n.namespace = nil
-      I18n.t(:record_invalid, :namespaced => true, :scope => [:activerecord, :errors, :messages]).should eq @message
+      t(:record_invalid, :scope => [:activerecord, :errors, :messages]).should eq @message
     end
 
     it "should get scoped message" do
       I18n.namespace = :site
-      I18n.t(:record_invalid, :namespaced => true, :scope => [:activerecord, :errors, :messages]).should eq @site_message
+      t(:record_invalid, :scope => [:activerecord, :errors, :messages]).should eq @site_message
     end
 
     it "should get base message for fallback" do
       I18n.namespace = :new_site
-      I18n.t(:record_invalid, :namespaced => true, :scope => [:activerecord, :errors, :messages]).should eq @message
+      t(:record_invalid, :scope => [:activerecord, :errors, :messages]).should eq @message
     end
 
   end
@@ -248,7 +202,7 @@ describe I18n do
       @user_title       = "User Title"
       @user_name        = "User Name"
 
-      I18n.backend.store_translations(I18n.locale, {
+      store_translations({
         :activerecord => {
           :attributes => {
             :admin => {
@@ -277,12 +231,10 @@ describe I18n do
     end
 
     it "should get base message" do
-      I18n.namespace = nil
       I18n.t(@name_key, :namespaced => true, :default => @name_default).should eq @admin_name
     end
 
     it "should get message from defaults" do
-      I18n.namespace = nil
       I18n.t(@title_key, :namespaced => true, :default => @title_default, :count => 1).should eq @user_title
     end
 

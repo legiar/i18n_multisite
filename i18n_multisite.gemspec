@@ -1,17 +1,17 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
 
-require "i18n_namespace"
+require "i18n_multisite/version"
 
 Gem::Specification.new do |s|
-  s.name            = "i18n_namespace"
-  s.version         = I18nNamespace::VERSION
+  s.name            = "i18n_multisite"
+  s.version         = I18nMultisite::VERSION
 
-  s.authors = ["Matthias Zirnstein", "Mikhail Mikhaliov"]
-  s.email = ["matthias.zirnstein@googlemail.com", "legiar@gmail.com"]
-  s.description     = "I18n key injection with fallback functionality"
-  s.summary         = "I18n key injection"
-  s.homepage        = "http://github.com/avarteqgmbh/i18n_namespace"
+  s.authors         = ["Mikhail Mikhaliov"]
+  s.email           = ["legiar@gmail.com"]
+  s.description     = "Support namespaces in I18n Simple backend"
+  s.summary         = "Support namespaces in I18n Simple backend"
+  s.homepage        = "http://github.com/legiar/i18n_multisite"
   s.licenses        = ["MIT"]
 
   s.files           = `git ls-files`.split($\)

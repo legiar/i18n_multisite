@@ -1,16 +1,13 @@
-module I18nNamespace
+module I18nMultisite
 
   module Fallbacks
-    include I18nNamespace::Helper
 
     def translate(locale, key, options = {})
-      namespaced = options.fetch(:namespaced, false)
-
-      return super if !namespaced || ::I18n.namespace.blank?
+      return super if ::I18n.namespace.blank?
       default = extract_non_symbol_default!(options) if options[:default]
 
-      scope     = to_a(options.delete(:scope))
-      namespace = to_a(::I18n.namespace)
+      scope     = Array.wrap(options.delete(:scope))
+      namespace = Array.wrap(::I18n.namespace)
 
       (namespace.size + 1).times do |part|
         catch(:exception) do
