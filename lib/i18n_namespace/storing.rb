@@ -3,7 +3,6 @@ module I18nNamespace
     include I18nNamespace::Helper
 
     def store_translations(locale, data, options = {})
-      # TODO: use delete instead of fetch
       namespaced = options.fetch(:namespaced, false)
 
       if namespaced && ::I18n.namespace.present?
